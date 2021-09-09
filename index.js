@@ -40,5 +40,18 @@ const readDir = () => {
   });
 }
 
-
+const fileOrDir = () => {
+  return new Promise((resolve, reject) => {
+    fs.stat(absolutePath, (error, stats) => {
+      if (error) {
+        reject(error);
+        }
+        else if (stats.isDirectory()) {
+        resolve(readDir(absolutePath));
+      } else if (stats.isFile()) {
+        readFile(absolutePath)
+      }
+    });
+  });
+};
 
