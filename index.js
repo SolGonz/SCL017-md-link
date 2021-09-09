@@ -26,5 +26,19 @@ const readFile = () => {
   });
 };
 
+// función que extrae archivos MD del directorio
+const readDir = () => {
+  fs.readdir(absolutePath, (err, files) =>{
+    if (err){
+      throw err;
+    }
+   files.forEach(file => { 
+     if (path.extname(file) === '.md'){
+       console.log('Este es un archivo MD del directorio: ', file)
+     }
+    });
+  });
+}
+
 
 
